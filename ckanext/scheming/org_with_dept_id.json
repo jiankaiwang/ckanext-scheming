@@ -5,11 +5,19 @@
   "fields": [
     {
       "field_name": "title",
-      "label": "Name",
+      "label": "中文名稱",
       "validators": "ignore_missing unicode",
       "form_snippet": "large_text.html",
       "form_attrs": {"data-module": "slug-preview-target"},
-      "form_placeholder": "My Organization"
+      "form_placeholder": "組織中文名稱"
+    },
+    {
+      "field_name": "etitle",
+      "label": "English Name",
+      "validators": "ignore_missing unicode",
+      "form_snippet": "large_text.html",
+      "form_attrs": {"data-module": "slug-preview-target"},
+      "form_placeholder": "Organization Name in English"
     },
     {
       "field_name": "name",
@@ -20,9 +28,15 @@
     },
     {
       "field_name": "notes",
-      "label": "Description",
+      "label": "中文描述",
       "form_snippet": "markdown.html",
-      "form_placeholder": "A little information about my organization..."
+      "form_placeholder": "關於組織資訊 ...."
+    },
+    {
+      "field_name": "enotes",
+      "label": "English Description",
+      "form_snippet": "markdown.html",
+      "form_placeholder": "A little information about my organization in English."
     },
     {
       "field_name": "url",

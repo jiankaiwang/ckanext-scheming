@@ -5,19 +5,11 @@
   "fields": [
     {
       "field_name": "title",
-      "label": "中文名稱",
+      "label": "Name",
       "validators": "ignore_missing unicode",
       "form_snippet": "large_text.html",
       "form_attrs": {"data-module": "slug-preview-target"},
-      "form_placeholder": "中文名稱"
-    },
-    {
-      "field_name": "etitle",
-      "label": "English Name",
-      "validators": "ignore_missing unicode",
-      "form_snippet": "large_text.html",
-      "form_attrs": {"data-module": "slug-preview-target"},
-      "form_placeholder": "group name in English"
+      "form_placeholder": "My Organization"
     },
     {
       "field_name": "name",
@@ -28,20 +20,20 @@
     },
     {
       "field_name": "notes",
-      "label": "中文敘述",
+      "label": "Description",
       "form_snippet": "markdown.html",
-      "form_placeholder": "中文敘述"
-    },
-    {
-      "field_name": "enotes",
-      "label": "English Description",
-      "form_snippet": "markdown.html",
-      "form_placeholder": "Description in English"
+      "form_placeholder": "A little information about my organization..."
     },
     {
       "field_name": "url",
       "label": "Image URL",
       "form_placeholder": "http://example.com/my-image.jpg"
+    },
+    {
+      "field_name": "bookface",
+      "label": "Bookface",
+      "form_placeholder": "http://bookface.example.com/ourgroup",
+      "output_validators": "ignore_missing"
     }
   ]
 }

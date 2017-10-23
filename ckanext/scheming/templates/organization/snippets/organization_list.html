@@ -1,0 +1,26 @@
+{#
+Display a grid of organization items.
+
+organizations - A list of organizations.
+
+Example:
+
+    {% snippet "organization/snippets/organization_list.html" %}
+
+#}
+{% block organization_list %}
+<ul class="media-grid" data-module="media-grid">
+  {% block organization_list_inner %}
+  {# customized : use h.get_featured_organizations() instead of organizations #}
+  {# use cutomizedized function getLen() to show all organizations #}
+  {# 30 is the self-defined number, assume maxium organization count is 30 #}
+  {% for organization in h.get_featured_organizations(count=30) %}
+    {% for item in organizations %}
+      {% if item.id == organization.id %}
+        {% snippet "organization/snippets/organization_item.html", organization=organization, position=loop.index %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+   {% endblock %}
+</ul>
+{% endblock %}

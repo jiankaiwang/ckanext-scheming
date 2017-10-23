@@ -1,0 +1,188 @@
+{
+  "scheming_version": 1,
+  "dataset_type": "dataset",
+  "about": "A reimplementation of the default CKAN dataset schema",
+  "about_url": "http://github.com/ckan/ckanext-scheming",
+  "dataset_fields": [
+    {
+      "field_name": "title",
+      "label": "website",
+      "preset": "title",
+      "form_placeholder": "eg. A descriptive title in English"
+    },
+    {
+      "field_name": "c_title",
+      "label": "中文標題",
+      "form_placeholder": "eg. 登革熱",
+      "validators": "ignore_missing unicode package_version_validator"
+    },
+    {
+      "field_name": "e_title",
+      "label": "Title in English",
+      "form_placeholder": "eg. Dengue",
+      "validators": "ignore_missing unicode package_version_validator"
+    },
+    {
+      "field_name": "name",
+      "label": "URL",
+      "preset": "dataset_slug",
+      "form_placeholder": "eg. my-dataset"
+    },
+    {
+      "field_name": "cd_notes",
+      "label": "中文資料集描述",
+      "preset": "note_meta",
+      "form_placeholder": "eg. 2003年起各地區、各年齡層、性別之病例數統計表"
+    },
+    {
+      "field_name": "ed_notes",
+      "label": "Description in English",
+      "preset": "note_meta",
+      "form_placeholder": "eg. The statistical data to determined cases on the age group and gender in Taiwan since 2003."
+    },
+    {
+      "field_name": "cm_notes",
+      "label": "中文欄位說明",
+      "preset": "note_meta",
+      "form_placeholder": "eg. 主要欄位有「確定病名」、「發病年份」、「發病月份」、「縣市」、「性別」、「年齡層」、「確定病例數」"
+    },
+    {
+      "field_name": "em_notes",
+      "label": "Metadata in English",
+      "preset": "note_meta",
+      "form_placeholder": "eg. Columns include disease name, year of onset, month of onset, county name, gender, age group and determined number of cases."
+    },
+    {
+      "field_name": "tag_string",
+      "label": "中英文標籤",
+      "preset": "tag_string_autocomplete",
+      "form_placeholder": "eg. economy, mental health, government"
+    },
+    {
+      "field_name": "data_type",
+      "label": "資料集類型",
+      "choices": [
+        { "value": "rawData", "label": "原始資料" },
+        { "value": "services", "label": "系統介接程式" },
+        { "value": "apps", "label": "行動化應用軟體" },
+        { "value": "tools", "label": "其他" }
+      ],
+      "form_snippet": "select.html",
+      "display_snippet": "select.html"
+    },
+    {
+      "field_name": "license_id",
+      "label": "授權方式",
+      "form_snippet": "license.html",
+      "help_text": "License definitions and additional information can be found at http://opendefinition.org/"
+    },
+    {
+      "field_name": "owner_org",
+      "label": "Organization",
+      "preset": "dataset_organization"
+    },
+    {
+      "field_name": "url",
+      "label": "資料說明頁面",
+      "form_placeholder": "http://www.dengue.gov.tw/",
+      "display_property": "foaf:homepage",
+      "display_snippet": "link.html"
+    },
+    {
+      "field_name": "fee",
+      "label": "計費方式",
+      "choices": [
+	{ "value": "toll", "label": "計費" },
+        { "value": "free", "label": "免費" }
+      ],
+      "form_snippet": "select.html",
+      "display_snippet": "select.html"
+    },
+    {
+      "field_name": "version",
+      "label": "Version",
+      "validators": "ignore_missing unicode package_version_validator",
+      "form_placeholder": "1.0"
+    },
+    {
+      "field_name": "author",
+      "label": "聯絡人",
+      "form_placeholder": "王先生",
+      "display_property": "dc:creator"
+    },
+    {
+      "field_name": "ea_author",
+      "label": "Contact in English",
+      "form_placeholder": "Mr. Wang",
+      "display_property": "dc:creator"
+    },
+    {
+      "field_name": "author_phone",
+      "label": "聯絡人電話",
+      "form_placeholder": "02-23959825#0000",
+      "display_property": "dc:creator"
+    },
+    {
+      "field_name": "author_email",
+      "label": "聯絡人電子郵件",
+      "form_placeholder": "example@cdc.gov.tw",
+      "display_property": "dc:creator",
+      "display_snippet": "email.html",
+      "display_email_name_field": "author"
+    },
+    {
+      "field_name": "pub_time",
+      "label": "發布時間",
+      "form_snippet": "date.html",
+      "form_placeholder": "eg. 2016/07/20"
+    },
+    {
+      "field_name": "updated_freq",
+      "label": "更新頻率",
+      "choices": [
+        { "value": "year", "label": "年" },
+        { "value": "month", "label": "月" },
+        { "value": "day", "label": "日" },
+        { "value": "once", "label": "一次性" },
+        { "value": "non-scheduled", "label": "不定期" }
+      ],
+      "form_snippet": "select.html",
+      "display_snippet": "select.html"
+    },
+    {
+      "field_name": "data_lang",
+      "label": "資料集語系",
+      "choices": [
+        { "value": "chinese", "label": "僅中文" },
+        { "value": "english", "label": "僅英文" },
+        { "value": "chinese-english", "label": "中英文" }
+      ],
+      "form_snippet": "select.html",
+      "display_snippet": "select.html"
+    }
+  ],
+  "resource_fields": [
+    {
+      "field_name": "url",
+      "label": "URL",
+      "preset": "resource_url_upload"
+    },
+    {
+      "field_name": "name",
+      "label": "Name",
+      "form_placeholder": "eg. January 2011 Gold Prices"
+    },
+    {
+      "field_name": "description",
+      "label": "Description",
+      "form_snippet": "markdown.html",
+      "form_placeholder": "Some useful notes about the data"
+    },
+    {
+      "field_name": "format",
+      "label": "Format",
+      "preset": "resource_format_autocomplete"
+    }
+  ]
+}
+
