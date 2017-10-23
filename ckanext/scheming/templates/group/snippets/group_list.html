@@ -1,0 +1,26 @@
+{#
+Display a grid of group items.
+
+groups - A list of groups.
+
+Example:
+
+    {% snippet "group/snippets/group_list.html" %}
+
+#}
+{% block group_list %}
+<ul class="media-grid" data-module="media-grid">
+  {% block group_list_inner %}
+
+  {# customized : use h.get_featured_groups() instead of groups #}
+  {# notice : count must be modified #}
+  {% for group in h.get_featured_groups(count=200) %}
+    {% for item in groups %}
+      {% if item.id == group.id %}
+      {% snippet "group/snippets/group_item.html", group=group, position=loop.index %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  {% endblock %}
+</ul>
+{% endblock %}
