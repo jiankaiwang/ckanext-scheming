@@ -1,21 +1,17 @@
-ckanext-scheming
-================
+# ckanext-scheming
 
-This extension provides a way to configure and share
-CKAN schemas using a JSON schema description. Custom
-template snippets for editing and display are also supported.
+This extension provides a way to configure and share CKAN schemas using a JSON schema description. Custom template snippets for editing and display are also supported. The original ckanext-scheming version is hosted on github.com/ckan. Current ckanext-scheming is the modified version for Taiwan CDC Open Data Portal, and it is compatible with others customized ckan extensions.
 
-[![Circle CI](https://circleci.com/gh/ckan/ckanext-scheming/tree/master.svg?style=svg)](https://circleci.com/gh/ckan/ckanext-scheming/tree/master)
-[![Coverage](https://coveralls.io/repos/ckan/ckanext-scheming/badge.svg?branch=master&service=github)](https://coveralls.io/github/ckan/ckanext-scheming?branch=master)
+[![Circle CI]()]()
+[![Coverage]()]()
 
-Requirements
-============
+## Requirements
 
-This plugin is compatible with CKAN 2.3 or later.
+* This plugin is compatible with CKAN 2.3 or later. It is developed and tested on CKAN 2.5.x.
+* The following is the compatible extension.
+	* [ckanext-download](https://github.com/jiankaiwang/ckanext-download)
 
-
-Configuration
-=============
+## Configuration
 
 Set the schemas you want to use with configuration options:
 
@@ -38,7 +34,6 @@ scheming.presets = ckanext.scheming:presets.json
 #   The is_fallback setting may be changed as well. Defaults to false:
 scheming.dataset_fallback = false
 ```
-
 
 Example dataset schemas
 -----------------------
@@ -347,18 +342,28 @@ Help text may be provided in multiple languages like [label fields](#label).
 Display help text inline if set to `true`. Default is `false`.
 
 
-Running the Tests
-=================
+## Running the Tests
 
-To run the tests, do:
+```bash
+. /usr/lib/ckan/default/bin/activate
 
-```nosetests --ckan --nologcapture --with-pylons=test.ini```
+$ cd /usr/lib/ckan/default/src/ckan/ckanext/ckanext-scheming
+$ python ./setup.py develop
+$ paster serve /etc/ckan/default/development.ini
+```
 
-and
+## Install
 
-```nosetests --ckan --nologcapture --with-pylons=test_subclass.ini ckanext.scheming.tests.test_dataset_display ckanext.scheming.tests.test_form:TestDatasetFormNew ckanext.scheming.tests.test_dataset_logic```
+```bash
+. /usr/lib/ckan/default/bin/activate
+cd /usr/lib/ckan/default/src/ckan/ckanext/
+git clone https://github.com/jiankaiwang/ckanext-scheming.git
+cd /usr/lib/ckan/default/src/ckan/ckanext/ckanext-scheming
+pip install -e .
 
-To run the tests and produce a coverage report, first make sure you have
-coverage installed in your virtualenv (``pip install coverage``) then run:
+sudo systemctl restart ckan
+sudo systemctl status ckan
+```
 
-```nosetests --ckan --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.scheming --cover-inclusive --cover-erase --cover-tests```
+
+

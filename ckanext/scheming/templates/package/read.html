@@ -1,0 +1,59 @@
+{% extends "package/read_base.html" %}
+
+{% set pkg = c.pkg_dict %}
+
+{% block primary_content_inner %}
+  {{ super() }}
+  {% block package_description %}
+    {% if pkg.private %}
+      <span class="dataset-private label label-inverse pull-right">
+        <i class="icon-lock"></i>
+        {{ _('Private') }}
+      </span>
+    {% endif %}
+    <h1>
+      {# customized : modify dataset information #}
+      {% block page_heading %}
+        {% if h.lang() == "en" %}
+          {{ pkg.e_title or pkg.name }}
+        {% elif h.lang() == "zh_TW" %}
+          {{ pkg.c_title or pkg.name }}
+        {% endif %}
+
+        {% if pkg.state.startswith('draft') %}
+          [{{ _('Draft') }}]
+        {% endif %}
+        {% if pkg.state == 'deleted' %}
+          [{{ _('Deleted') }}]
+        {% endif %}
+      {% endblock %}
+    </h1>
+      {% if pkg.ed_notes or pkg.cd_notes %}
+        <div class="notes embedded-content">
+          {# customized : modify dataset description #}
+          {% if h.lang() == "en" %}
+             {{ h.render_markdown(pkg.ed_notes) }}
+          {% elif h.lang() == "zh_TW" %}
+             {{ h.render_markdown(pkg.cd_notes) }}
+          {% endif %}
+        </div>
+      {% endif %}
+    {# FIXME why is this here? seems wrong #}
+    <span class="insert-comment-thread"></span>
+  {% endblock %}
+
+  {% block package_resources %}
+    {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+  {% endblock %}
+
+  {% block package_tags %}
+    {% snippet "package/snippets/tags.html", tags=pkg.tags %}
+  {% endblock %}
+
+  {% block package_additional_info %}
+    {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
+  {% endblock %}
+
+  {% snippet "snippets/disqus.html" %}
+
+{% endblock %}

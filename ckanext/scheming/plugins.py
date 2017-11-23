@@ -89,7 +89,8 @@ class _SchemingMixin(object):
             'scheming_get_preset': helpers.scheming_get_preset,
             'scheming_get_schema': helpers.scheming_get_schema,
             'scheming_get_timezones': helpers.scheming_get_timezones,
-            'scheming_datetime_to_tz': helpers.scheming_datetime_to_tz
+            'scheming_datetime_to_tz': helpers.scheming_datetime_to_tz,
+            'check_download_extension': helpers.check_download_extension
             }
 
     def get_validators(self):
