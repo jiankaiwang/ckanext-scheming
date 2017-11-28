@@ -1,8 +1,9 @@
 # ckanext-scheming
 
-This extension provides a way to configure and share CKAN schemas using a JSON schema description. Custom template snippets for editing and display are also supported. The original ckanext-scheming version is hosted on github.com/ckan. Current ckanext-scheming is the modified version for Taiwan CDC Open Data Portal, and it is compatible with others customized ckan extensions.
+This extension provides a way to configure and share CKAN schemas using a JSON schema description. Custom template snippets for editing and display are also supported. **The original ckanext-scheming version is hosted on github.com/ckan. Current ckanext-scheming is the modified version for Taiwan CDC Open Data Portal, and it is compatible with others customized ckan extensions**.
 
 [![Circle CI]()]()
+
 [![Coverage]()]()
 
 ## Requirements
