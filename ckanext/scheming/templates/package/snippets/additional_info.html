@@ -1,0 +1,163 @@
+{# customized metadata of the dataset #}
+
+<section class="additional-info">
+  <h3>{{ _('Additional Info') }}</h3>
+  <table class="table table-striped table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th scope="col">{{ _('Field') }}</th>
+        <th scope="col">{{ _('Value') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        {% if pkg_dict.em_notes or pkg_dict.cd_notes %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.getLangLabel("Metadata","欄位資訊") }}</th>
+            {% if h.lang() == "en" %}
+                <td class="dataset-details">{{ _(pkg_dict.em_notes) }}</td>
+            {% elif h.lang() == "zh_TW" %}
+                <td class="dataset-details">{{ _(pkg_dict.cm_notes) }}</td>
+            {% endif %}
+          </tr>
+        {% endif %}
+
+        {% if pkg_dict.url %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ _('Source') }}</th>
+            {% if h.is_url(pkg_dict.url) %}
+              <td class="dataset-details" property="foaf:homepage">{{ h.link_to(pkg_dict.url, pkg_dict.url, rel='foaf:homepage', target='_blank') }}</td>
+            {% else %}
+              <td class="dataset-details" property="foaf:homepage">{{ pkg_dict.url }}</td>
+            {% endif %}
+          </tr>
+        {% endif %}
+
+        {% if pkg_dict.data_type %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.getLangLabel("Data Type","資料集類型") }}</th>
+            {% if pkg_dict.data_type == 'rawData' %}
+              <td class="dataset-details">{{ h.getLangLabel("rawData","原始資料") }}</td>
+            {% elif pkg_dict.data_type == 'services' %}
+              <td class="dataset-details">{{ h.getLangLabel("services","系統介接程式") }}</td>
+            {% elif pkg_dict.data_type == 'apps' %}
+              <td class="dataset-details">{{ h.getLangLabel("apps","行動化應用軟體") }}</td>
+            {% else %}
+              <td class="dataset-details">{{ h.getLangLabel("tools","其他") }}</td>
+            {% endif %}
+          </tr>
+        {% endif %}
+
+        {% if pkg_dict.fee %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.getLangLabel("Fee","計費方式") }}</th>
+            {% if pkg_dict.fee == 'free' %}
+              <td class="dataset-details">{{ h.getLangLabel("Free","免費") }}</td>
+            {% else %}
+              <td class="dataset-details">{{ h.getLangLabel("Toll","計費") }}</td>
+            {% endif %}
+          </tr>
+        {% endif %}
+
+        {% if pkg_dict.version %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ _("Version") }}</th>
+            <td class="dataset-details">{{ pkg_dict.version }}</td>
+          </tr>
+        {% endif %}
+        
+        {% if pkg_dict.author_email %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.getLangLabel("Contact","聯絡人") }}</th>
+            <td class="dataset-details" property="dc:creator">{{ h.mail_to(email_address=pkg_dict.author_email, name=h.getLangLabel(pkg_dict.ea_author, pkg_dict.author)) }}</td>
+          </tr>
+        {% elif pkg_dict.author %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.getLangLabel("Contact","聯絡人") }}</th>
+            <td class="dataset-details" property="dc:creator">{{ h.getLangLabel(pkg_dict.ea_author, pkg_dict.author) }}</td>
+          </tr>
+        {% endif %}
+
+        {% if pkg_dict.author_email %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.getLangLabel("Contact Email","聯絡人電子郵件") }}</th>
+            <td class="dataset-details" property="dc:creator">{{ h.mail_to(email_address=pkg_dict.author_email, name=pkg_dict.author_email) }}</td>
+          </tr>
+        {% endif %}
+
+        {% if pkg_dict.author_phone %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.getLangLabel("Contact Phone","聯絡人電話") }}</th>
+            <td class="dataset-details" property="dc:creator">{{ h.getLangLabel("+886-" + pkg_dict.author_phone, pkg_dict.author_phone) }}</td>
+          </tr>
+        {% endif %}
+        
+        {% if pkg_dict.updated_freq %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.getLangLabel("Updated Frequency","更新頻率") }}</th>
+            {% if pkg_dict.updated_freq == 'year' %}
+              <td class="dataset-details">{{ h.getLangLabel("Year","年") }}</td>
+            {% elif pkg_dict.updated_freq == 'month' %}
+              <td class="dataset-details">{{ h.getLangLabel("Month","月") }}</td>
+            {% elif pkg_dict.updated_freq == 'day' %}
+              <td class="dataset-details">{{ h.getLangLabel("Day","日") }}</td>
+            {% elif pkg_dict.updated_freq == 'once' %}
+              <td class="dataset-details">{{ h.getLangLabel("Once","一次性") }}</td>
+            {% else %}
+              <td class="dataset-details">{{ h.getLangLabel("Non-scheduled","不定期") }}</td>
+            {% endif %}
+          </tr>
+        {% endif %}
+
+        {% if pkg_dict.data_lang %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ h.getLangLabel("Dataset Language","資料集語言") }}</th>
+            {% if pkg_dict.data_lang == 'chinese' %}
+              <td class="dataset-details">{{ h.getLangLabel("Only Chinese","僅中文") }}</td>
+            {% elif pkg_dict.data_lang == 'english' %}
+              <td class="dataset-details">{{ h.getLangLabel("Only English","僅英文") }}</td>
+            {% else %}
+              <td class="dataset-details">{{ h.getLangLabel("Both Chinese and English","中英文") }}</td>
+            {% endif %}
+          </tr>
+        {% endif %}
+        
+        {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ _("State") }}</th>
+            <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
+          </tr>
+        {% endif %}
+        {% if pkg_dict.metadata_modified %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ _("Last Updated") }}</th>
+            <td class="dataset-details">
+                {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_modified %}
+            </td>
+          </tr>
+        {% endif %}
+
+        {% if pkg_dict.metadata_created %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ _("Created") }}</th>
+
+            <td class="dataset-details">
+                {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_created %}
+            </td>
+          </tr>
+        {% endif %}
+
+      {% block extras scoped %}
+        {% for extra in h.sorted_extras(pkg_dict.extras) %}
+          {% set key, value = extra %}
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
+            <td class="dataset-details" property="rdf:value">{{ value }}</td>
+          </tr>
+        {% endfor %}
+      {% endblock %}
+      
+    </tbody>
+  </table>
+</section>
+      

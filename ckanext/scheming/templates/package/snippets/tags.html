@@ -1,0 +1,9 @@
+{% if tags %}
+  <section class="tags">
+    <h3>{{ h.getLangLabel("Dataset Tags","資料集標籤") }}</h3>
+    {# customized
+      {% snippet 'snippets/tag_list.html', tags=tags, _class='tag-list well' %}
+    #}
+    {% snippet 'snippets/tag_list.html', tags=tags, _class='tag-list' %}
+  </section>
+{% endif %}

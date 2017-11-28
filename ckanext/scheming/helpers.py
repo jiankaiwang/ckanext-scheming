@@ -270,3 +270,25 @@ def scheming_get_timezones(field):
         return to_options(validate_tz(timezones))
 
     return to_options(pytz.common_timezones)
+
+# check ckanext-download exists or not
+def check_download_extension():
+    allPlugins = config.get('ckan.plugins','')
+    eachPlugin = allPlugins.strip().split(' ')
+    if 'download' in eachPlugin:
+        import ckanext.download.plugin as download
+        allHelperFuncs = dir(download)
+        if 'getViewSum' in allHelperFuncs and 'getPkgSum' in allHelperFuncs:
+            return True
+        return False
+    return False
+
+
+
+
+
+
+
+
+
+
